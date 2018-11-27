@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ZaloraAssess</string>
+    <string name="send_msg">Send!</string>
+	<string name="write_review">Write your review!</string>
 </resources>
