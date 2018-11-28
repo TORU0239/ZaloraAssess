@@ -1,7 +1,6 @@
 package my.com.toru.zaloraassess.ui
 
 import android.arch.lifecycle.ViewModelProviders
-import android.content.res.Configuration
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -18,10 +17,6 @@ class MainActivity : AppCompatActivity() {
         mainbinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mainbinding.setLifecycleOwner(this@MainActivity)
         mainbinding.mainViewModel = ViewModelProviders.of(this@MainActivity).get(MainViewModel::class.java)
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration?) {
-        super.onConfigurationChanged(newConfig)
     }
 
     override fun onDestroy() {
