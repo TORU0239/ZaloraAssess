@@ -7,16 +7,9 @@ object MessageProcessor {
 
     fun splitUserReview(message:String):ArrayList<String>{
         val m = Pattern.compile("(.{1,45}(\\W|$))").matcher(message)
-        var index = 1
-        val length = (message.length / 50) + 1
-        println("length: $length")
-
         val list = ArrayList<String>()
         while(m.find()){
-            println("length::" + "$index/$length ".plus(m.group()).length)
-            list.add("$index/$length ".plus(m.group()))
-            println("length::" + "$index/$length ".plus(m.group()))
-            index+=1
+            list.add(m.group())
         }
         return list
     }

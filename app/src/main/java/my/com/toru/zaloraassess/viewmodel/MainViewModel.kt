@@ -52,12 +52,14 @@ class MainViewModel : ViewModel() {
                 }
                 else{
                     sendingMessageConcurrently(MessageProcessor.splitUserReview(it))
+                    msgFromUser.set("")
                 }
 
             }
             else{
                 if(it.isNotBlank()){
                     adapter.setData(it)
+                    msgFromUser.set("")
                 }
                 else{
                     Toast.makeText(view.context, R.string.no_contents, Toast.LENGTH_SHORT).show()
@@ -87,11 +89,12 @@ class MainViewModel : ViewModel() {
             when(msg?.what){
                 1004 ->{
                     if(msg.arg1 != msgList.size){
-                        adapter.setData(msgList[msg.arg1])
+                        val splitMsg = msgList[msg.arg1].makeCounter(msg.arg1+1, msgList.size)
+                        adapter.setData(splitMsg)
+
                         val newMSg = Message()
                         newMSg.what = 1004
                         newMSg.arg1 = (msg.arg1 + 1)
-                        Log.w(TAG, "msg.arg1: ${msg.arg1}")
                         sendMessageDelayed(newMSg, 1000)
                     }
                 }
@@ -99,4 +102,6 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+
+    fun String.makeCounter(currentIndex:Int, size:Int) = "$currentIndex/$size ".plus(this)
 }
