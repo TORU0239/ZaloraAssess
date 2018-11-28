@@ -41,7 +41,7 @@ class MainViewModel : ViewModel() {
             it.toString() != ""
         }?.let {
             if(it.length > 50){
-                sendingMessageConcurrently(MessageProcessor.splitingMessage(it))
+                sendingMessageConcurrently(MessageProcessor.splitUserReview(it))
             }
             else{
                 adapter.setData(it)
