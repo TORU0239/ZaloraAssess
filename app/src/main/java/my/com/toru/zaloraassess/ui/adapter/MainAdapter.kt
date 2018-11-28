@@ -1,19 +1,20 @@
 package my.com.toru.zaloraassess.ui.adapter
 
+import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import my.com.toru.zaloraassess.R
+import my.com.toru.zaloraassess.databinding.AdapterMainBinding
 
 class MainAdapter: RecyclerView.Adapter<MainVH>() {
 
     private val messageList = ArrayList<String>()
 
     override fun onCreateViewHolder(container: ViewGroup, position: Int): MainVH {
-        val inflater = LayoutInflater.from(container.context)
-        return MainVH(inflater.inflate(R.layout.adapter_main, container, false))
+        val databinding:AdapterMainBinding = DataBindingUtil.inflate(LayoutInflater.from(container.context), R.layout.adapter_main, container, false)
+        return MainVH(databinding)
     }
 
     override fun getItemCount(): Int = messageList.size
@@ -28,8 +29,10 @@ class MainAdapter: RecyclerView.Adapter<MainVH>() {
     }
 }
 
-class MainVH(itemView: View): RecyclerView.ViewHolder(itemView){
+class MainVH(private val binding:AdapterMainBinding): RecyclerView.ViewHolder(binding.root){
     fun bindItem(msg:String){
         Log.e("MainVH", "msg:: $msg")
+        binding.message = msg
+        binding.executePendingBindings()
     }
 }
