@@ -23,6 +23,7 @@
 			android:layout_marginStart="10dp"
 			android:hint="@string/write_review"
 			android:imeOptions="actionDone"
+			android:text="@={mainViewModel.msgFromUser}"
 			android:onEditorActionListener="@{mainViewModel.editorActionListener}"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +34,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginEnd="10dp"
 			android:text="@string/send_msg"
-			android:onClick="@{mainViewModel::onClckButton}"
+			android:onClick="@{mainViewModel::onClickButton}"
 			app:layout_constraintStart_toEndOf="@id/ed_message"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"/>

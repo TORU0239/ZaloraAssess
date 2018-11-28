@@ -17,7 +17,8 @@ class MainViewModel {
 
     val editorActionListener = TextView.OnEditorActionListener { v, actionId, _ ->
         if(actionId == EditorInfo.IME_ACTION_DONE){
-            Log.w("MainView", "action done")
+            Log.i(TAG, "action done")
+            Log.e(TAG,"inout message: ${msgFromUser.get()}")
             Util.hideSoftKeyboard(v)
             true
         }
@@ -26,7 +27,7 @@ class MainViewModel {
         }
     }
 
-    fun onClckButton(view: View){
-        Toast.makeText(view.context, "test", Toast.LENGTH_SHORT).show()
+    fun onClickButton(view: View){
+        Toast.makeText(view.context, "test:: ${msgFromUser.get()}", Toast.LENGTH_SHORT).show()
     }
 }
