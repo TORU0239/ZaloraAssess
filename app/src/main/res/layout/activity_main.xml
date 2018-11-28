@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-	android:paddingBottom="10dp"
-    tools:context=".ui.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 
-    <EditText
-        android:id="@+id/ed_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_marginStart="10dp"
-        android:hint="@string/write_review"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintWidth_percent="0.75"/>
+	<data>
+		<variable
+			name="mainViewModel"
+			type="my.com.toru.zaloraassess.viewmodel.MainViewModel"/>
+	</data>
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="@string/send_msg"
-        app:layout_constraintStart_toEndOf="@id/ed_message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+	<android.support.constraint.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:paddingBottom="10dp"
+		tools:context=".ui.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-	    android:id="@+id/rcv_main"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-	    tools:listitem="@layout/adapter_main"
-	    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ed_message"/>
-</android.support.constraint.ConstraintLayout>
+		<EditText
+			android:id="@+id/ed_message"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:inputType="text"
+			android:layout_marginStart="10dp"
+			android:hint="@string/write_review"
+			android:imeOptions="actionDone"
+			android:onEditorActionListener="@{mainViewModel.editorActionListener}"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintWidth_percent="0.75"/>
+
+		<Button
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="10dp"
+			android:text="@string/send_msg"
+			android:onClick="@{mainViewModel::onClckButton}"
+			app:layout_constraintStart_toEndOf="@id/ed_message"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"/>
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/rcv_main"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			tools:listitem="@layout/adapter_main"
+			app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintBottom_toTopOf="@id/ed_message"/>
+	</android.support.constraint.ConstraintLayout>
+
+</layout>
