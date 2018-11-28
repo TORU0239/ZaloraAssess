@@ -2,4 +2,6 @@
     <string name="app_name">ZaloraAssess</string>
     <string name="send_msg">Send!</string>
 	<string name="write_review">Write your review!</string>
+	<string name="no_whitespace">Please write review properly.</string>
+	<string name="no_contents">Your review is empty.</string>
 </resources>

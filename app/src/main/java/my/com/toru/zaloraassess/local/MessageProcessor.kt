@@ -1,21 +1,16 @@
 package my.com.toru.zaloraassess.local
 
-object MessageProcessor {
-    private const val lengthOfEachBunch = 45
-    private const val indexOfNextBunch = 46
+import java.util.regex.Pattern
 
-    fun splitingMessage(message:String):ArrayList<String>{
-        val result = ArrayList<String>()
-        val lastIndex = message.length / lengthOfEachBunch
-        for(i in 0 until lastIndex){
-            val splitMsg: String = if(i == lastIndex-1){
-                message.substring((indexOfNextBunch * i), message.length)
-            } else{
-                message.substring((indexOfNextBunch * i), (indexOfNextBunch * (i+1)))
-            }
-            val msgWithNumber = "${i+1}/$lastIndex".plus(" $splitMsg")
-            result.add(msgWithNumber)
+object MessageProcessor {
+    private const val REGEX = "(.{1,45}(\\W|$))"
+
+    fun splitUserReview(message:String):ArrayList<String>{
+        val m = Pattern.compile(REGEX).matcher(message)
+        val list = ArrayList<String>()
+        while(m.find()){
+            list.add(m.group())
         }
-        return result
+        return list
     }
 }
