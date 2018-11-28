@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import android.widget.Toast
+import my.com.toru.zaloraassess.R
 import my.com.toru.zaloraassess.Util.Util
 import my.com.toru.zaloraassess.local.MessageProcessor
 import my.com.toru.zaloraassess.ui.adapter.MainAdapter
@@ -25,7 +27,7 @@ class MainViewModel : ViewModel() {
         if(actionId == EditorInfo.IME_ACTION_DONE){
             Log.i(TAG, "action done")
             Log.e(TAG,"inout message: ${msgFromUser.get()}")
-            Util.hideSoftKeyboard(v)
+            runUploadingEvent(v)
             true
         }
         else{
@@ -36,7 +38,11 @@ class MainViewModel : ViewModel() {
     private val handler = AbsHandler()
 
     fun onClickButton(view: View) {
-        msgFromUser.set("Customer service never response. Vendor not responding to email too. 3 Orders cancelled by merchant without any explanation. Refund took weeks to process. Customer service never response. Vendor not responding to email too. 3 Orders cancelled by merchant without any explanation. Refund took weeks to process.")
+        runUploadingEvent(view)
+    }
+
+    private fun runUploadingEvent(view:View){
+        Util.hideSoftKeyboard(view)
         msgFromUser.get()?.filter {
             it.toString() != ""
         }?.let {
@@ -44,7 +50,12 @@ class MainViewModel : ViewModel() {
                 sendingMessageConcurrently(MessageProcessor.splitUserReview(it))
             }
             else{
-                adapter.setData(it)
+                if(it.isNotBlank()){
+                    adapter.setData(it)
+                }
+                else{
+                    Toast.makeText(view.context, R.string.no_contents, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
