@@ -36,6 +36,7 @@ class MainViewModel : ViewModel() {
     private val handler = AbsHandler()
 
     fun onClickButton(view: View) {
+        msgFromUser.set("Customer service never response. Vendor not responding to email too. 3 Orders cancelled by merchant without any explanation. Refund took weeks to process. Customer service never response. Vendor not responding to email too. 3 Orders cancelled by merchant without any explanation. Refund took weeks to process.")
         msgFromUser.get()?.filter {
             it.toString() != ""
         }?.let {
@@ -56,6 +57,10 @@ class MainViewModel : ViewModel() {
             arg1 = 0
         }
         handler.sendMessage(message)
+    }
+
+    fun onDestroy(){
+        handler.removeCallbacksAndMessages(null)
     }
 
     @SuppressLint("HandlerLeak")

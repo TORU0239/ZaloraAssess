@@ -16,10 +16,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainbinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        mainbinding.setLifecycleOwner(this@MainActivity)
         mainbinding.mainViewModel = ViewModelProviders.of(this@MainActivity).get(MainViewModel::class.java)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)
+    }
+
+    override fun onDestroy() {
+        mainbinding.mainViewModel?.onDestroy()
+        super.onDestroy()
     }
 }
