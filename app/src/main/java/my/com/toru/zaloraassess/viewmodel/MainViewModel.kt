@@ -95,7 +95,7 @@ class MainViewModel : ViewModel() {
                         val newMSg = Message()
                         newMSg.what = 1004
                         newMSg.arg1 = (msg.arg1 + 1)
-                        sendMessageDelayed(newMSg, 1000)
+                        sendMessageDelayed(newMSg, 500)
                     }
                 }
                 else->{}

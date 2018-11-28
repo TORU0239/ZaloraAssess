@@ -6,7 +6,7 @@ object MessageProcessor {
     private const val REGEX = "(.{1,45}(\\W|$))"
 
     fun splitUserReview(message:String):ArrayList<String>{
-        val m = Pattern.compile("(.{1,45}(\\W|$))").matcher(message)
+        val m = Pattern.compile(REGEX).matcher(message)
         val list = ArrayList<String>()
         while(m.find()){
             list.add(m.group())
