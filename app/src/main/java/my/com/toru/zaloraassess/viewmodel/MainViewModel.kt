@@ -47,7 +47,13 @@ class MainViewModel : ViewModel() {
             it.toString() != ""
         }?.let {
             if(it.length > 50){
-                sendingMessageConcurrently(MessageProcessor.splitUserReview(it))
+                if(!it.contains(" ")){
+                    Toast.makeText(view.context, R.string.no_whitespace, Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    sendingMessageConcurrently(MessageProcessor.splitUserReview(it))
+                }
+
             }
             else{
                 if(it.isNotBlank()){
