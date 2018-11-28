@@ -45,6 +45,7 @@
 			android:layout_height="0dp"
 			tools:listitem="@layout/adapter_main"
 			app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+			app:adapter="@{mainViewModel.adapter}"
 			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
